@@ -10,10 +10,11 @@ using System.IO;
 
 namespace GameFramework.FileSystem
 {
+    // TODO hxd 2024/07/23 去掉sealed，让外部系统可以继承他开放一些必要接口
     /// <summary>
-    /// 通用文件系统流。
+    /// 通用文件系统流
     /// </summary>
-    public sealed class CommonFileSystemStream : FileSystemStream, IDisposable
+    public /*sealed*/ class CommonFileSystemStream : FileSystemStream, IDisposable
     {
         private readonly FileStream m_FileStream;
 
