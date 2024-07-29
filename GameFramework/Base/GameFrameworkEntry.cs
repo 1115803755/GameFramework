@@ -43,7 +43,15 @@ namespace GameFramework
             s_GameFrameworkModules.Clear();
             ReferencePool.ClearAll();
             Utility.Marshal.FreeCachedHGlobal();
-            GameFrameworkLog.SetLogHelper(null);
+
+            // TODO hxd 2024/07/29 既然其他的也没清理，log也不用清理，反正每次启动框架都会重新设置
+            //GameFrameworkLog.SetLogHelper(null);
+
+            // TODO hxd 2024/07/29 其他静态工具类为啥不清？仅清理log，感觉时e大漏了或者清不清其实都没必要，包括log
+            //Utility.Text.SetTextHelper(null);
+            //Version.SetVersionHelper(null);
+            //Utility.Compression.SetCompressionHelper(null);
+            //Utility.Json.SetJsonHelper(null);
         }
 
         /// <summary>
