@@ -20,12 +20,12 @@ namespace GameFramework.Resource
     internal sealed partial class ResourceManager : GameFrameworkModule, IResourceManager
     {
         /// <summary>
-        /// 远端最新的资源映射信息
+        /// 远端最新的资源映射信息(单机模式下该文件是随包资源)
         /// </summary>
         private const string RemoteVersionListFileName = "GameFrameworkVersion.dat";
 
         /// <summary>
-        /// 本地apk中的资源映射信息（便于与RemoteVersionListFileName对比做更新）
+        /// 本地apk中的资源映射信息（便于与RemoteVersionListFileName对比做更新，仅非package且可更新模式下才用到）
         /// </summary>
         private const string LocalVersionListFileName = "GameFrameworkList.dat";
         private const string DefaultExtension = "dat";
