@@ -12,19 +12,26 @@ namespace GameFramework.Resource
     public partial struct PackageVersionList
     {
         /// <summary>
-        /// 资源。
+        /// 资源。(对应ab包资源信息)
         /// </summary>
         [StructLayout(LayoutKind.Auto)]
         public struct Resource
         {
             private static readonly int[] EmptyIntArray = new int[] { };
 
+            /// <summary>
+            /// ab包名称
+            /// </summary>
             private readonly string m_Name;
             private readonly string m_Variant;
             private readonly string m_Extension;
             private readonly byte m_LoadType;
             private readonly int m_Length;
             private readonly int m_HashCode;
+
+            /// <summary>
+            /// ab包包含的资源索引列表（从<see cref="PackageVersionList.m_Assets"/>获取实际资源信息）
+            /// </summary>
             private readonly int[] m_AssetIndexes;
 
             /// <summary>

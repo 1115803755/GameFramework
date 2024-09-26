@@ -43,7 +43,7 @@ namespace GameFramework.Resource
             }
 
             /// <summary>
-            /// 获取所在资源名称。
+            /// 获取所在资源名称。（ab包名称）
             /// </summary>
             public ResourceName ResourceName
             {

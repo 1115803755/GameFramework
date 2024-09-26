@@ -19,13 +19,23 @@ namespace GameFramework.Resource
     /// </summary>
     internal sealed partial class ResourceManager : GameFrameworkModule, IResourceManager
     {
+        /// <summary>
+        /// 远端最新的资源映射信息
+        /// </summary>
         private const string RemoteVersionListFileName = "GameFrameworkVersion.dat";
+
+        /// <summary>
+        /// 本地apk中的资源映射信息（便于与RemoteVersionListFileName对比做更新）
+        /// </summary>
         private const string LocalVersionListFileName = "GameFrameworkList.dat";
         private const string DefaultExtension = "dat";
         private const string TempExtension = "tmp";
         private const int FileSystemMaxFileCount = 1024 * 16;
         private const int FileSystemMaxBlockCount = 1024 * 256;
 
+        /// <summary>
+        /// 缓存资源对应的信息列表
+        /// </summary>
         private Dictionary<string, AssetInfo> m_AssetInfos;
         private Dictionary<ResourceName, ResourceInfo> m_ResourceInfos;
         private SortedDictionary<ResourceName, ReadWriteResourceInfo> m_ReadWriteResourceInfos;

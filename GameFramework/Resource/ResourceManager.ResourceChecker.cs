@@ -315,6 +315,7 @@ namespace GameFramework.Resource
                                 dependencyAssetNames[index++] = assets[dependencyAssetIndex].Name;
                             }
 
+                            // 构建资源映射缓存信息
                             m_ResourceManager.m_AssetInfos.Add(asset.Name, new AssetInfo(asset.Name, resourceName, dependencyAssetNames));
                         }
 
@@ -339,6 +340,8 @@ namespace GameFramework.Resource
                     }
 
                     m_UpdatableVersionListReady = true;
+
+                    // 刷新检查资源的状态信息（比如资源如果更新了，那么资源的状态就一定存在读写区，这样对一个只读区的资源更新后，可以根据状态加载读写区的资源）
                     RefreshCheckInfoStatus();
                 }
                 catch (Exception exception)
@@ -365,6 +368,14 @@ namespace GameFramework.Resource
                 throw new GameFrameworkException(Utility.Text.Format("Updatable version list '{0}' is invalid, error message is '{1}'.", fileUri, string.IsNullOrEmpty(errorMessage) ? "<Empty>" : errorMessage));
             }
 
+            /// <summary>
+            /// 从只读目录中获取资源版本文件用作更新检查
+            /// </summary>
+            /// <param name="fileUri"></param>
+            /// <param name="bytes"></param>
+            /// <param name="duration"></param>
+            /// <param name="userData"></param>
+            /// <exception cref="GameFrameworkException"></exception>
             private void OnLoadReadOnlyVersionListSuccess(string fileUri, byte[] bytes, float duration, object userData)
             {
                 if (m_ReadOnlyVersionListReady)
@@ -433,6 +444,14 @@ namespace GameFramework.Resource
                 RefreshCheckInfoStatus();
             }
 
+            /// <summary>
+            /// 从读写目录中获取资源版本文件用作更新检查
+            /// </summary>
+            /// <param name="fileUri"></param>
+            /// <param name="bytes"></param>
+            /// <param name="duration"></param>
+            /// <param name="userData"></param>
+            /// <exception cref="GameFrameworkException"></exception>
             private void OnLoadReadWriteVersionListSuccess(string fileUri, byte[] bytes, float duration, object userData)
             {
                 if (m_ReadWriteVersionListReady)
